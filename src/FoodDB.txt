@@ -1,0 +1,13 @@
+Avacado,b,100
+Chicken,b,140
+Kale,b,80
+Lettuce,b,30
+Bread Slice,b,100
+Tomato,b,30
+Mayo,b,80
+Bacon,b,130
+BLT,r,Bacon,Tomato,Bread Slice
+Salad,r,Tomato,Kale
+Banana,b,100
+Apple,b,70
+BBB,r,Mayo,Banana

@@ -1,0 +1,91 @@
+SWEN-250 Activity Journal
+Ruby – Diet Manager
+
+Name: Meet Patel
+
+================================================================
+Level 1 – Food DB Load – Start
+Estimated Time	1H MM
+Plan for this level:
+	For this part, I will just create a hashmap of Food and Recipes, 
+with thier name mapping to the actual objects. I will also create classes
+for Food and Recipe and give them a toString method
+
+Level 1 – Food DB Load – Complete
+Actual Time	1H MM
+Lessons learned, problems encountered, obstacles overcome, etc.
+	I encountered a couple of problems when I called methods on
+objects when hashing because I wasnt aware of what object they were 
+due the Ruby bieng a dynamic language. 
+
+================================================================
+Level 2 – Print & Find – Start
+Estimated Time	 15 min
+Plan for this level:
+	For this part, I will use the starts with method for strings
+to find the key witht he given prefix, and finding the value using 
+a key for the print method.
+
+Level 2  – Print & Find – Complete
+Actual Time	15 min
+Lessons learned, problems encountered, obstacles overcome, etc.
+	This part was pretty simple, I didnt need to do much and 
+everything went as planned fortunetly. T
+================================================================
+Level 3 – Database Update – Start
+Estimated Time	1H MM
+Plan for this level:
+	I think Ill just have to create new food or recipe objects
+and put them into my database after checking if they arent already
+in them. Also, Im confused about what quit does
+
+Level 3 – Database Update  – Complete
+Actual Time	1H MM
+Lessons learned, problems encountered, obstacles overcome, etc.
+I basically just created new food or recipe objects and updated my
+hashmap. I still was confused as to what quit does so I skipped it 
+for now. 
+================================================================
+Level 4 – Logging Foods – Start
+Estimated Time	HH 45
+Plan for this level:
+	Ill start with show all so I can use it to check if my hashmap
+updates in order to check the other commants. Also the 2 log functions
+look pretty similar so they wont be hard.
+Level 4 – Logging Foods – Complete
+Actual Time	HH 50
+Lessons learned, problems encountered, obstacles overcome, etc.
+	It was cool learning how you can show what time is it in 
+real life using Ruby, because I felt that that shows how this code
+can be actually useful in real life if you are dieting or creating
+a fitness app. 
+================================================================
+Level 5 – Show & Delete – Start
+Estimated Time	 45m
+Plan for this level:
+	For this ill just remove the given string from the LogItems
+foodList, and show the information from the foodlists from the given
+date. 
+Level 5 – Show & Delete – Complete
+Actual Time	1 30
+Lessons learned, problems encountered, obstacles overcome, etc.
+	I had problems because I got a lot of null pointer exceptions
+type things which took a lot of time to debug. Also, I had a problem
+where there was an extra \n charector that I couldnt even see. This made
+me take twice the time as I expected.
+================================================================
+Overall Summary
+Estimated Total Time	3H 0M
+Actual Total Time	3H 45
+Project reflection:
+
+	For this project, I had a lot of difficulties because ruby is a 
+dyamically typed language and a lot of times, the object that I expected
+something to be wasnt the object that it actually was. Also, It was
+ cool learning how you can show what time is it in
+real life using Ruby, because I felt that that shows how this code
+can be actually useful in real life if you are dieting or creating
+a fitness app. In addition, I felt that this was a very nice project
+which was pretty fair because all of the problems that I encountered
+were very relevent to learning the language, and although it was thought
+provoking, it wasnt too long and dragged out.

@@ -1,0 +1,38 @@
+class Log
+
+	require './FoodDB.rb'
+	private
+
+	def initialize (filename)
+		@logDB = getLog(filename)
+	end
+
+
+
+	public	
+	attr_reader :logDB
+
+	def getLog(filename)
+		db = Hash.new()
+		csvfile = File.open(filename, "r")
+                csvfile.each_line do |line|
+			arr =line.split(",")
+			if db[arr[0]]== nil 
+				logitem = LogItem.new(arr[0])
+				logitem.add(arr[1])
+				db[arr[0]] = logitem
+			end
+			if db[arr[0]] != nil
+				db[arr[0]].foods.add(arr[1])
+			end
+		end
+	end
+
+	def getDB
+		@logDB
+	end
+
+end 
+
+log = Log.new("DietLog.txt")
+

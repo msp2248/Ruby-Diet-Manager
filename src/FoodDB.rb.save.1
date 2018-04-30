@@ -1,0 +1,55 @@
+
+require'./Recipe'
+require'./BasicFood'
+class FoodDB
+
+	private
+
+	def initialize (filename)
+		@db = createDB(filename)
+	end
+	
+
+	public 
+
+	attr_reader :db
+
+	def getDB
+		@db
+	end
+
+	def createDB(filename)
+		db = Hash.new()	
+		csvfile = File.open(filename, "r")
+		csvfile.each_line do |line|
+			arr = line.split(",")
+			if arr[1] == "b"
+				db[arr[0]] =  BasicFood.new(arr[0], arr[2].to_i)
+				#puts db[arr[0]].toString
+			end
+			if arr[1] == "r"
+				r = Recipe.new (arr[0])
+				total =0
+				arr.shift
+				arr.shift
+				arr.each do |elt|
+#					puts elt
+					if (db.has_key?(elt))
+						r.foods << db[elt]
+						total += db[elt].calories
+					end		
+				end
+				r.setcalories(total)
+				db[r.name] = r
+			end
+		end
+	db
+	end
+
+	def add(r)
+		db[r.name] = r
+	end
+		
+
+	
+end

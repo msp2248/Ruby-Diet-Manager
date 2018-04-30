@@ -1,0 +1,146 @@
+require './FoodDB.rb'
+require './Log.rb'
+
+#foodDB = FoodDB.new("FoodDB.txt")
+
+
+def printAll (db)
+   puts "\n"
+   db.each_key do |key|
+     if (db[key].class == BasicFood)
+       puts key + ": " + db[key].toString
+     end
+  end
+  puts "\n"
+  db.each_key do |key|
+    if (db[key].class == Recipe)
+      puts key + ": " + db[key].toString
+    end
+  end
+end
+
+def showAll (db)
+  puts "\n"
+  db.each_key do |key|
+    puts db[key].toString
+  end
+end
+
+
+
+def find (prefix, foodDB)
+  foodDB.getDB.each_key do |key|
+    if key.start_with? prefix
+      puts foodDB.getDB[key].toString
+    end
+  end
+end
+
+
+def delete(db,name,date)
+  if db.has_key? date 
+    db[date].foodsList.delete(name)
+  end
+end
+
+
+def main
+foodDB = FoodDB.new("FoodDB.txt")
+logDB = Log.new("DietLog.txt")
+  $stdin.each do | line|
+    arr = line.split(" ")
+    if arr[0] == "quit"
+      return
+    end		
+    if arr[0] + " " + arr[1]  == "print all"
+      printAll(foodDB.getDB)
+    end		
+    if arr[0] == "print" and arr[1] != "all"
+      if foodDB.getDB[arr[1]] == nil
+        puts "That food item is not in the DataBase"
+      end
+      if foodDB.getDB[arr[1]] != nil
+	puts foodDB.getDB[arr[1]].toString
+      end
+    end
+    if arr[0] == "find"
+      find(arr[1], foodDB)			
+    end
+    if arr[0] == "new"
+      if arr[1] == "food"
+        temp =line.split(' ')[1..-1].join(' ')
+        newline  = temp.split(' ')[1..-1].join(' ')
+        arr = newline.split(",")
+	foodDB.getDB[arr[0]] = BasicFood.new(arr[0],arr[1])
+      end
+      if arr[1] == "recipe"
+        puts line + "INITIAL "
+	temp =line.split(' ')[1..-1].join(' ')
+	newline  = temp.split(' ')[1..-1].join(' ')
+	arr = newline.split(",")
+	puts "ARR[0}" + arr[0]
+	r = Recipe.new (arr[0])
+	puts r.name
+        total =0
+        arr.shift
+        arr.each do |elt|                                    
+          if (foodDB.getDB.has_key?(elt))
+            r.foods << foodDB.getDB[elt]
+            total += foodDB.getDB[elt].calories
+          end
+        end
+        r.setcalories(total)
+        foodDB.add(r)
+	puts foodDB.getDB[r.name].toString
+      end
+    end
+    if arr[0] +" " + arr[1] == "show all"
+      showAll(logDB.getDB)
+    end	
+    if arr[0] == "log"
+      if arr.length == 2
+        if foodDB.getDB[arr[1]] == nil
+          puts "That food item is not in the DataBase"
+        end
+        if foodDB.getDB[arr[1]] != nil
+          currtime = Time.now.strftime("%m/%d/%Y %H:%M")
+	  currDate = currtime.split(" ")[0]
+	  if logDB.getDB[currDate] == nil
+	    log = LogItem.new(currDate)
+	    logDB.getDB[currDate] = log
+            logDB.getDB[currDate].add(arr[1])
+	  else 
+	    logDB.getDB[currDate].add(arr[1])
+          end 
+        end
+      end
+      if arr.length == 3
+        if foodDB.getDB[arr[1]] == nil
+          puts "That food item is not in the DataBase"
+        end
+        if foodDB.getDB[arr[1]] != nil
+     	  currDate = arr[2]
+          if logDB.getDB[currDate] == nil
+            log = LogItem.new(currDate)
+            logDB.getDB[currDate] = log
+            logDB.getDB[currDate].add(arr[1])
+          else
+            logDB.getDB[currDate].add(arr[1])
+          end
+      end
+    end
+    if arr[0] == "delete"
+      puts "INSIDE IF STATEMENT"
+      arr.shift
+      arr = arr.split(",")
+      puts "AARR0" + arr[0] + "ARR!" + arr[1]
+      if foodDB.getDB[arr[1]] == nil
+        puts "That food item is not in the DataBase"
+      end
+      delete(logDB.getDB, arr[1], arr[2])
+    end
+    puts "\n"
+    end 		
+  end
+end
+main
